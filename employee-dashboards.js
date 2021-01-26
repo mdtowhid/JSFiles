@@ -26,9 +26,7 @@ $(function () {
         const rowsEditedStatus = document.getElementById("rowsEdited");
         if (objectToSend.length === 0) {
             document.getElementById("saveBtn").disabled = true;
-            rowsEditedStatus !== null ?
-                (rowsEditedStatus.innerHTML = ``) :
-                rowsEditedStatus;
+            rowsEditedStatus !== null ? (rowsEditedStatus.innerHTML = ``) : rowsEditedStatus;
         }
         if (objectToSend.length > 0) {
             document.getElementById("saveBtn").disabled = false;
@@ -64,46 +62,30 @@ $(function () {
             employees.forEach((emp) => {
                 let tr = ``;
                 tr += `<tr id="${"a_" + emp.EmployeeId}">
-            <td><input id="EmployeeId" value="${emp.EmployeeId
-                    }" class="dbl-click-input" readonly="readonly" type="text"/></td>
+                <td><input id="UserName_VW" value="${emp.UserName_VW}" class="dbl-click-input" readonly="readonly" type="text"/></td>
+                    <td><input id="EmployeeId" value="${emp.EmployeeId}" class="dbl-click-input" readonly="readonly" type="text"/></td>
+                    
             <td><input id="EMPFunctionalAreaName_VW" value="${emp.EMPFunctionalAreaName_VW}" class="dbl-click-input" readonly="readonly" type="text"/></td>
-            <td><input id="Sex_VW" value="${emp.Sex_VW
-                    }" class="dbl-click-input" readonly="readonly" type="text"/></td>
-            <td><input id="FatherName" value="${emp.FatherName
-                    }" class="dbl-click-input" readonly="readonly" type="text"/></td>
-            <td><input id="MotherName" value="${emp.MotherName
-                    }" class="dbl-click-input" readonly="readonly" type="text"/></td>
-            <td><input id="JoinningDate" value="${emp.JoinningDate
-                    }" class="dbl-click-input" readonly="readonly" type="text"/></td>
-            <td><input id="ConfirmationDate" value="${emp.ConfirmationDate
-                    }" class="dbl-click-input" readonly="readonly" type="text"/></td>
-            <td><input id="PresentAddress" value="${emp.PresentAddress
-                    }" class="dbl-click-input" readonly="readonly" type="text"/></td>
-            <td><input id="CellPhone" value="${emp.CellPhone
-                    }" class="dbl-click-input" readonly="readonly" type="text"/></td>
-            <td><input id="DateOfBirth" value="${emp.DateOfBirth
-                    }" class="dbl-click-input" readonly="readonly" t class="dbl-click-input" disabledype="text"/></td>
-            <td><input id="NationalityId" value="${emp.NationalityId
-                    }" type="text"/></td>
-            <td><input id="Department_VW" value="${emp.Department_VW
-                    }" class="dbl-click-input" readonly="readonly" type="text"/></td>
-            <td><input id="Designation_VW" value="${emp.Designation_VW
-                    }" class="dbl-click-input" readonly="readonly" type="text"/></td>
-            <td><input id="EmploymentType_VW" value="${emp.EmploymentType_VW
-                    }" class="dbl-click-input" readonly="readonly" type="text"/></td>
-            <td><input id="BloodGroup_VW" value="${emp.BloodGroup_VW
-                    }" class="dbl-click-input" readonly="readonly" type="text"/></td>
-            <td><input id="JobStatus" value="${emp.JobStatus
-                    }" class="dbl-click-input" readonly="readonly" type="text"/></td>
-            <td><input id="ReportTo_VW" value="${emp.ReportTo_VW
-                    }" class="dbl-click-input" readonly="readonly" type="text"/></td>
+            <td><input id="Sex_VW" value="${emp.Sex_VW}" class="dbl-click-input" readonly="readonly" type="text"/></td>
+            <td><input id="FatherName" value="${emp.FatherName}" class="dbl-click-input" readonly="readonly" type="text"/></td>
+            <td><input id="MotherName" value="${emp.MotherName}" class="dbl-click-input" readonly="readonly" type="text"/></td>
+            <td><input id="JoinningDate" value="${emp.JoinningDate}" class="dbl-click-input" readonly="readonly" type="text"/></td>
+            <td><input id="ConfirmationDate" value="${emp.ConfirmationDate}" class="dbl-click-input" readonly="readonly" type="text"/></td>
+            <td><input id="PresentAddress" value="${emp.PresentAddress}" class="dbl-click-input" readonly="readonly" type="text"/></td>
+            <td><input id="CellPhone" value="${emp.CellPhone}" class="dbl-click-input" readonly="readonly" type="text"/></td>
+            <td><input id="DateOfBirth" value="${emp.DateOfBirth}" class="dbl-click-input" readonly="readonly" t class="dbl-click-input" disabledype="text"/></td>
+            <td><input id="NationalityId" value="${emp.NationalityId}" type="text"/></td>
+            <td><input id="Department_VW" value="${emp.Department_VW}" class="dbl-click-input" readonly="readonly" type="text"/></td>
+            <td><input id="Designation_VW" value="${emp.Designation_VW}" class="dbl-click-input" readonly="readonly" type="text"/></td>
+            <td><input id="EmploymentType_VW" value="${emp.EmploymentType_VW}" class="dbl-click-input" readonly="readonly" type="text"/></td>
+            <td><input id="BloodGroup_VW" value="${emp.BloodGroup_VW}" class="dbl-click-input" readonly="readonly" type="text"/></td>
+            <td><input id="JobStatus" value="${emp.JobStatus}" class="dbl-click-input" readonly="readonly" type="text"/></td>
+            <td><input id="ReportTo_VW" value="${emp.ReportTo_VW}" class="dbl-click-input" readonly="readonly" type="text"/></td>
        </tr>`;
                 document.getElementById("tableBody").innerHTML += tr;
             });
 
             attachEventsOnTableInputs();
-
-
 
             document.getElementById("loadMore").addEventListener("click", () => {
                 uiUtitlityManager(currentRows, null);
@@ -112,16 +94,13 @@ $(function () {
         }, 1000);
     };
 
-
     let objectBuilder = (obj) => {
         if (objectToSend.length === 0) {
             objectToSend.push(obj);
         } else {
             let isExist = objectToSend.filter((x) => x.EmployeeId === obj.EmployeeId);
             if (isExist.length > 0) {
-                let index = objectToSend
-                    .map((x) => x.EmployeeId === obj.EmployeeId)
-                    .indexOf(obj.EmployeeId === obj.EmployeeId);
+                let index = objectToSend.map((x) => x.EmployeeId === obj.EmployeeId).indexOf(obj.EmployeeId === obj.EmployeeId);
                 if (index !== -1) {
                     let updatedObj = Object.assign(objectToSend[index], obj);
                     objectToSend.splice(index, 1);
@@ -135,41 +114,38 @@ $(function () {
 
     const attachSearchEvents = (filterInputs, inputParent) => {
         for (const fi of filterInputs) {
-            fi.addEventListener('keyup', (e) => {
+            fi.addEventListener("keyup", (e) => {
                 let query = e.target.value;
-                searchInDom(document.getElementById('searchDropDownDiv'), query, inputParent);
+                searchInDom(document.getElementById("searchDropDownDiv"), query, inputParent);
             });
         }
-    }
+    };
 
-    const getDropdown = dropdownName => {
+    const getDropdown = (dropdownName) => {
         let dropdown = null;
         for (const key in dropdowns) {
-            if (dropdowns[key].name === dropdownName)
-                dropdown = dropdowns[key].dropdown;
+            if (dropdowns[key].name === dropdownName) dropdown = dropdowns[key].dropdown;
         }
         return dropdown;
-    }
+    };
 
     const setDropdownFunctionalities = (input, id, dropdownName) => {
         let inputParent;
         let inputParentElementId;
-        let className = 'dbl-clicked-input_' + Math.ceil(Math.random() * 99999);
+        let className = "dbl-clicked-input_" + Math.ceil(Math.random() * 99999);
         id += "_" + Math.ceil(Math.random() * 99999);
-
         editedRowsUniqueClassNames.push(className);
-
         inputParent = input.parentElement;
-        input.setAttribute('readonly', 'readonly');
-        inputParent.setAttribute('id', id);
+        input.setAttribute("readonly", "readonly");
+        inputParent.setAttribute("id", id);
         input.classList.add(className);
-        inputParentElementId = inputParent.getAttribute('id');
+        inputParentElementId = inputParent.getAttribute("id");
         document.getElementById(inputParentElementId).innerHTML += getDropdown(dropdownName);
 
-        document.getElementsByClassName('dropdownWithSearchWrapper')[0].classList.add('active');
-        addClickEventOnDropdownElements('searchDropDownDiv', input, className);
+        document.getElementsByClassName("dropdownWithSearchWrapper")[0].classList.add("active");
+        addClickEventOnDropdownElements("searchDropDownDiv", input, className);
 
-        const filterInputs = document.getElementsByClassName('search-dropdown-input');
+        const filterInputs = document.getElementsByClassName("search-dropdown-input");
         attachSearchEvents(filterInputs, input.parentElement);
     };
 
@@ -186,21 +162,19 @@ $(function () {
                 let isBloodGroupId = id === "BloodGroup_VW";
                 let isJobStatusId = id === "JobStatus";
                 let isReportToId = id === "ReportTo_VW";
+                let isUserNameId = id === "UserName_VW";
 
-                if (isEmpFunationalAreaId)
-                    setDropdownFunctionalities(input, 'EMPFunctionalAreaName_VW', 'empFunctionalAreaNames');
+                if (isEmpFunationalAreaId) setDropdownFunctionalities(input, "EMPFunctionalAreaName_VW", "empFunctionalAreaNames");
 
-                if (isDepartmentId)
-                    setDropdownFunctionalities(input, 'Department_VW', 'departments');
+                if (isDepartmentId) setDropdownFunctionalities(input, "Department_VW", "departments");
 
-                if (isDesignationId)
-                    setDropdownFunctionalities(input, 'Designation_VW', 'designations');
+                if (isDesignationId) setDropdownFunctionalities(input, "Designation_VW", "designations");
 
-                if (isEmploymentTypeId)
-                    setDropdownFunctionalities(input, 'EmploymentType_VW', 'employmentTypes');
+                if (isEmploymentTypeId) setDropdownFunctionalities(input, "EmploymentType_VW", "employmentTypes");
 
-                if (isBloodGroupId)
-                    setDropdownFunctionalities(input, 'BloodGroup_VW', 'bloodGroups');
+                if (isBloodGroupId) setDropdownFunctionalities(input, "BloodGroup_VW", "bloodGroups");
+
+                if (isUserNameId) setDropdownFunctionalities(input, "UserName_VW", "usermapEmployees");
 
                 // if (isJobStatusId)
                 //     setDropdownFunctionalities(input, 'JobStatus', 'departments');
@@ -211,9 +185,7 @@ $(function () {
             input.addEventListener("blur", () => {
                 input.setAttribute("readonly", true);
                 let employeeId = input.parentElement.parentElement.getAttribute("id");
-                let changedInputs = document.querySelectorAll(
-                    "#" + employeeId + " td input"
-                );
+                let changedInputs = document.querySelectorAll("#" + employeeId + " td input");
                 document.getElementById(employeeId).classList.add("active");
                 let dynamicObject = {};
                 changedInputs.forEach((cinput) => {
@@ -223,20 +195,19 @@ $(function () {
                 uiUtitlityManager();
             });
 
-            input.addEventListener('change', () => {
-                alert('You have')
-            })
+            input.addEventListener("change", () => {
+                alert("You have");
+            });
         });
     };
-
-
 
     const getAllEmployees = () => {
         userParams(currentRows.length === 0 ? rows : (rows += 50));
         $.get(`/hr/GetAllEmployees?recordNumber=${rows}`, (data) => {
             if (data) {
                 makeTable(data);
-                document.getElementById('isSMGBusiness').innerHTML = data.ISSMGBUSINESS;
+                console.log(data.usermapEmployees);
+                document.getElementById("isSMGBusiness").innerHTML = data.ISSMGBUSINESS;
 
                 for (const x in data)
                     dropdowns.push({
@@ -244,7 +215,12 @@ $(function () {
                         dropdown: createDropDownWithSearch(data[x]),
                     });
 
-                console.log(dropdowns);
+                // console.log(dropdowns[6].name);
+                // console.log(dropdowns[6].dropdown);
+                // dropdowns[6].dropdown = [];
+                // console.log(dropdowns[6].dropdown);
+
+                dropdowns[6].dropdown = createDropDownWithSearch(null, ['UserId_FK', 'UserName_VW', data.usermapEmployees]);
             }
         });
     };

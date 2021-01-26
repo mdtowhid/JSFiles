@@ -1,8 +1,10 @@
+import * as Helpers from '../scripts/exporter-helpers.js';
+
 export const theadForEmployees = () => {
     return `
         <thead>
             <tr id="tbleTh">
-                
+                <th>User Name</th>
                 <th>Employee Id</th>
                 <th>EMP Functional Area Name</th>
                 <th>Sex</th>
@@ -39,24 +41,37 @@ export const createDropDown = (dropdownObj = []) => {
 
 export const ids = {};
 
-export const createDropDownWithSearch = (dropdownObj = []) => {
+export const createDropDownWithSearch = (dropdownObj = [], configurableObj = []) => {
     let dropdownWithSearchWrapper = ``;
     let input = `<input type="text" class="search-dropdown-input" placeholder="search"/>`;
     let dropdownElelmentsWrapper = ``;
     let dropdownElelments = ``;
 
     for (const opt in dropdownObj) {
+        let isObjectHasKey = Helpers.isObjectHasKey('FileCode', dropdownObj[opt]);
+        if (!isObjectHasKey)
+            break;
         if (dropdownObj[opt].FileCode === undefined)
             return null;
 
         dropdownElelments += `<p id="${dropdownObj[opt].FileCode}">${dropdownObj[opt].FileName}</p>`;
     }
-    // dropdownObj.forEach((opt) => {
-    //     dropdownElelments += `<p id="${opt.FileCode}">${opt.FileName}</p>`;
-    // });
+
+    for (const opt in configurableObj[2]) {
+        // console.log(configurableObj[2][opt][configurableObj[0]]);
+        // console.log(configurableObj[2][opt][configurableObj[1]]);
+        let pId = configurableObj[2][opt][configurableObj[0]];
+        let pText = configurableObj[2][opt][configurableObj[1]]
+
+        let isObjectHasKey = Helpers.isObjectHasKey(configurableObj[0], configurableObj[2][opt]);
+        if (!isObjectHasKey)
+            break;
+        dropdownElelments += `<p id="${pId}">${pText}</p>`;
+    }
 
     dropdownElelmentsWrapper = `<div id="searchDropDownDiv">${dropdownElelments}</div>`;
     dropdownWithSearchWrapper = `<div class="dropdownWithSearchWrapper">
+        ${Helpers.closerHTML('span')}
         ${input}
         ${dropdownElelmentsWrapper}
     </div>`;
